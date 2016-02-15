@@ -1,0 +1,16 @@
+<html>
+  <head>
+    {% if title %}
+      <title>{{ title }}</title>
+    {% else %}
+      <title>Welcome to the DevFun homepage!</title>
+    {% endif %}
+  </head>
+  <body>
+    <div>
+      <a href="/">DevFun</a>
+    </div>
+    {% block content %}
+    {% endblock %}
+  </body>
+</html>
