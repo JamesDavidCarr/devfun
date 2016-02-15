@@ -1,4 +1,5 @@
 .vagrant
 devfun_venv/
+*.db
 *.pyc
 *.swp
