@@ -8,7 +8,7 @@ app.config.from_object('config')
 db = SQLAlchemy(app)
 
 lm = LoginManager()
-lm.login_view = "/register"
+lm.login_view = "/login"
 lm.init_app(app)
 
 from devfun import views, models

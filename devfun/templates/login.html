@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+  <p>New to the site? Register <a href="/register">here</a></p>
+
+  <form action="" method="POST" name="login">
+    {{ form.csrf_token }}
+    <p>Username: {{ form.username }}</p>
+    <p>Password: {{ form.password }}</p>
+
+    <p><input type="submit" value="Login"></p>
+  </form>
+{% endblock %}

@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
+  <p>Already a user? Login <a href="/login">here</a></p>
+
   <form action="" method="POST" name="register">
     {{ form.csrf_token }}
     <p>Username: {{ form.username }}</p>
