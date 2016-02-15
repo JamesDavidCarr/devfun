@@ -5,12 +5,19 @@
     {% else %}
       <title>Welcome to the DevFun homepage!</title>
     {% endif %}
+    <link rel="stylesheet" href="/static/css/devfun.css">
   </head>
   <body>
     <div>
-      <a href="/">DevFun</a>
+      <a href="/"><img id="logo" src="/static/images/devfun.jpg" alt=""></a>
+      DevFun
     </div>
     {% block content %}
     {% endblock %}
+    <br>
+    <br>
+    <br>
+    <br>
+    Have a wonderful day!
   </body>
 </html>
