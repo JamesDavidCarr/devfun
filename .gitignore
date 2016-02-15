@@ -1,4 +1,4 @@
-devfun_venv
 .vagrant
+devfun_venv/
 *.pyc
 *.swp
