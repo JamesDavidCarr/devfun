@@ -1,0 +1,3 @@
+devfun_venv
+.vagrant
+*.pyc
