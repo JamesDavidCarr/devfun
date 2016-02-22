@@ -75,7 +75,7 @@ def create_post():
         db.session.add(post)
         db.session.commit()
 
-        return redirect(url_for('index'))
+        return redirect(url_for('view_post', id=post.id))
     return render_template('new_post.html', form=form, title="Create a new post")
 
 

@@ -3,6 +3,7 @@
   {% if current_user.is_authenticated %}
     <p>Hello, {{ current_user.username }}!</p>
     <a href="{{ url_for('view_my_posts') }}"><p>Here are your posts!</p></a>
+    <a href="{{ url_for('create_post') }}"><p>Create a new post!</p></a>
   {% else %}
     <a href="/register">Register here!</a>
   {% endif %}

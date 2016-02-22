@@ -2,6 +2,8 @@
 {% block content %}
   All of my posts!
 
+  <p>Got anything else that you like? <a href="{{ url_for('create_post') }}">Create a new post!</a></p>
+
   {% if posts %}
     <h4>---------</h4>
     {% for post in posts %}
