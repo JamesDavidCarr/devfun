@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+  Create a new post!
+
+  <form action="" method="POST" name="create_post">
+    {{ form.csrf_token }}
+    <p>Title: {{ form.title }}</p>
+    <p>url: {{ form.url }}</p>
+
+    <p><input type="submit" value="Submit link!"></p>
+  </form>
+{% endblock %}

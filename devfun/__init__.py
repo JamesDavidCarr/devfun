@@ -6,6 +6,8 @@ app = Flask(__name__, static_folder="static")
 app.config.from_object('config')
 
 db = SQLAlchemy(app)
+db.create_all()
+db.session.commit()
 
 lm = LoginManager()
 lm.login_view = "/login"

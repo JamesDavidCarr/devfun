@@ -1,6 +1,7 @@
 from flask.ext.wtf import Form
+from flask.ext.wtf.html5 import URLField
 from wtforms import BooleanField, TextField, PasswordField
-from wtforms.validators import DataRequired, Length, Required, EqualTo
+from wtforms.validators import DataRequired, Length, Required, EqualTo, url
 from .models import User
 
 class RegistrationForm(Form):
@@ -41,3 +42,10 @@ class LoginForm(Form):
 
         self.user = user
         return True
+
+class PostForm(Form):
+    title = TextField('Title', [Length(min=1, max=80)])
+    url = URLField(validators=[url()])
+
+    def __init__(self, *args, **kwargs):
+        Form.__init__(self, *args, **kwargs)

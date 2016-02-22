@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from devfun import db
 from werkzeug import generate_password_hash, check_password_hash
+from sqlalchemy_utils import URLType
 
 class User(db.Model):
     __tablename__ = "User"
@@ -33,3 +34,16 @@ class User(db.Model):
 
     def get_id(self):
       return self.username
+
+
+class Post(db.Model):
+    __tablename__ = "Post"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    creator = db.Column(db.String(80), db.ForeignKey("User.username"), nullable=False)
+    title = db.Column(db.String(80), nullable=False)
+    url = db.Column(URLType, nullable=False)
+
+    def __init__(self, creator, title, url):
+        self.creator = creator
+        self.title = title
+        self.url = url
