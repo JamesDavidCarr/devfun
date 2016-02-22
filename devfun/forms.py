@@ -49,3 +49,10 @@ class PostForm(Form):
 
     def __init__(self, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
+
+
+class CommentForm(Form):
+    content = TextField('Content', [Length(min=1, max=500)])
+
+    def __init__(self, *args, **kwargs):
+        Form.__init__(self, *args, **kwargs)

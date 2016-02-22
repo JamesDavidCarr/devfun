@@ -9,5 +9,16 @@
     <h4>url for this post is: <a href="{{ post.url }}">here!</a></h4>
   {% endif %}
 
+  {% for comment in comments %}
+    <h4>{{ comment.creator }}</h4>
+    <h3>{{ comment.content }}</h3>
+    <h3>------------</h3>
+  {% endfor %}
 
+  <form action="/comment/new/{{ id }}" method="POST" name="create_comment">
+    {{ form.csrf_token }}
+    <p>Content: {{ form.content }}</p>
+
+    <p><input type="submit" value="Submit comment"></p>
+  </form>
 {% endblock %}

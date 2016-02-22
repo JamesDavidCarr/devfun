@@ -1,8 +1,8 @@
 from devfun import app, db, lm
 from flask import send_from_directory, render_template, request, flash, redirect, url_for, g
 from flask.ext.login import current_user, login_user, login_required, logout_user
-from .forms import RegistrationForm, LoginForm, PostForm
-from .models import User, Post
+from .forms import RegistrationForm, LoginForm, PostForm, CommentForm
+from .models import User, Post, Comment
 
 @lm.user_loader
 def load_user(id):
@@ -17,7 +17,7 @@ def serve_static_file(filename):
     return send_from_directory(app.static_folder, filename)
 
 @app.errorhandler(404)
-def error_handler(error):
+def error_handler():
     return render_template('404.html'), 404
 
 
@@ -83,9 +83,11 @@ def create_post():
 def view_post(id):
     post = Post.query.get(int(id))
     if not post:
-        error_handler()
+        return error_handler()
     else:
-        return render_template('post.html', post=post, title=post.title)
+        comments = Comment.query.filter(Comment.post == int(id))
+        form = CommentForm()
+        return render_template('post.html', post=post, comments=comments, title=post.title, form=form, id=post.id)
 
 
 @app.route('/posts/mine')
@@ -100,3 +102,18 @@ def view_my_posts():
 def posts():
     posts = Post.query.limit(10)
     return render_template('posts.html', posts=posts, title="All posts!")
+
+
+@app.route('/comment/new/<post_id>', methods=['GET', 'POST'])
+@login_required
+def create_comment(post_id):
+    form = CommentForm(request.form)
+    if request.method == 'POST' and form.validate_on_submit():
+        username = g.user.username
+
+        comment = Comment(username, post_id, form.content.data)
+        db.session.add(comment)
+        db.session.commit()
+
+        return redirect(url_for('view_post', id=post_id))
+    return url_for('index')
