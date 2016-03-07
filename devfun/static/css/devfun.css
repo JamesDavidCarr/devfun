@@ -6,3 +6,13 @@
 #devfun {
   font-weight: bold;
 }
+
+.user_post {
+  margin: 2% 2% 2% 2%;
+  background: #95a5a6;
+  width: 20%;
+}
+
+.user_post:nth-of-type(odd) {
+    background: #ecf0f1;
+}

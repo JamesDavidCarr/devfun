@@ -1,17 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-  All of my posts!
-
-  <p>Got anything else that you like? <a href="{{ url_for('create_post') }}">Create a new post!</a></p>
+  <a href="{{ url_for('create_post') }}"><button type="button" class="btn btn-success">Create a new post!</button></a>
 
   {% if posts %}
-    <h4>---------</h4>
     {% for post in posts %}
-      <h3>{{ post.title }}</h3>
-
-      <h4>url for this post is: <a href="{{ post.url }}">here!</a></h4>
-
-      <h4>---------</h4>
+      <div class="user_post">
+        <a href="{{ post.url }}"><h3>{{ post.title }}</h3></a>
+      </div>
     {% endfor %}
   {% else %}
     <h3>Oh no, no posts!</h3>
